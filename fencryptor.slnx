@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="fencryptor/fencryptor.vcxproj" Id="c5585b78-55f9-493d-a6d0-1b06325df5b7" />
+</Solution>
