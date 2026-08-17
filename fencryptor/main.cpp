@@ -65,7 +65,7 @@ int main(int argc, char* argv[]) {
     readFromFile(fileLocation);
     //------------------------------------
 
-
+    //TODO encrypt file content and write to new file
 
     return 0;
 }
