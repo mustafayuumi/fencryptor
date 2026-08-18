@@ -26,34 +26,39 @@ char encryptChar(char charParam) {
         }
     }
 }
+//TODO utf8 support
+std::string readFromFile(std::string fileLoc) {
+    std::string lineContentStr;
+    std::ifstream MyReadFile(fileLoc);
+    std::string encText; //encrypted text
 
-std::string encryptText(std::string value) {
-    std::string result = "";
+    while (getline(MyReadFile, lineContentStr)) {
+        if (!lineContentStr.empty()) {
+            for (int i = 0; i < lineContentStr.size() - 1; i++) {
 
-    for (int i = 0;i < value[-1];i++) {
-        if (value[i] != ' ') {
-            result += encryptChar(value[i]);
+                if (lineContentStr[i] == ' ') {
+                    encText += ' ';
+                }
+                else {
+                    encText += encryptChar(lineContentStr[i]);
+                }
+
+                //end line
+                if (lineContentStr[i] == lineContentStr.size() - 1) {
+                    encText += '\n';
+                }
+            }
         }
         else {
-            result += ' ';
+            encText += '\n';
         }
+        
     }
-    return result;
-}
-
-std::string readFromFile(std::string fileLoc) {
-    std::string result;
-    std::string fileContentStr;
-    std::ifstream MyReadFile(fileLoc);
-
-    while (getline(MyReadFile, fileContentStr)) {
-        std::cout << fileContentStr + "\n";
-    }
-
-    return "false";
+    return encText;
 }
 
 bool writeToFile() {
+
     return false;
 }
 
@@ -62,10 +67,20 @@ int main(int argc, char* argv[]) {
     std::string fileLocation;
     std::cout << "dosya konumunu girin: ";
     std::cin >> fileLocation;
-    readFromFile(fileLocation);
-    //------------------------------------
 
-    //TODO encrypt file content and write to new file
+    std::string encFileContent = readFromFile(fileLocation);
+    //------------------------------------
+    std::cout << '\n' << encFileContent << std::endl;
+    //std::string encryptedFileContent;
+    //encryptedFileContent = encryptText(fileContent);
+    ///*for (int i = 0;i < fileContent.length() - 1;i++) {
+    //    encryptedFileContent += encryptChar(fileContent[i]);
+    //}*/
+    //std::cout <<"\n"<< encryptedFileContent << std::endl;
+
+    std::cin.get();
+
+    //TODO write to new file
 
     return 0;
 }
